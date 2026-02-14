@@ -1,0 +1,24 @@
+# Secrets
+.env
+
+# Data & Large Files
+data/
+outputs/*.pdf
+outputs/*.xlsx
+sql/
+
+# Database storage
+mysql_data/
+extra/
+
+# Python & Environment
+.venv/
+__pycache__/
+*.py[cod]
+
+# Orchestration Logs
+logs/
+
+# System Junk
+.DS_Store
+Thumbs.db

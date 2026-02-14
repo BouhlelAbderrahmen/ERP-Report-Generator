@@ -1,0 +1,13 @@
+.venv/
+dags/
+config/
+logs/
+plugins/
+extra/
+outputs/
+*.xlsx
+*.pdf
+*.pyc
+__pycache__/
+.git/
+.gitignore

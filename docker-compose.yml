@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  pfe_mysql:
+    image: mysql:8.0
+    container_name: pfe_mysql_container
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_DATABASE: nafnaf_db
+      MYSQL_INITDB_SKIP_TZINFO: "yes"
+    command:
+      - --disable-log-bin
+      - --innodb_redo_log_capacity=128M
+      - --innodb_buffer_pool_size=1G
+      - --innodb_flush_log_at_trx_commit=2
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      # Map DB.sql to the initialization directory
+      - ./sql/DB.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    networks:
+      - pfe_network
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p1234" ]
+      interval: 15s # Increased slightly for heavy load
+      retries: 200 # High retry count because 7GB takes time
+      start_period: 300s
+
+  report_gen:
+    build: .
+    image: rep:v1
+    container_name: rep_gen
+    volumes:
+      - ./data:/app/data:ro
+      - ./outputs:/app/outputs
+      - ./config.yaml:/app/config.yaml:ro
+    env_file:
+      - .env
+    networks:
+      - pfe_network
+    depends_on:
+      pfe_mysql:
+        condition: service_healthy
+    restart: "no" # Changed to "no" so it runs once then stops
+
+networks:
+  pfe_network:
+    driver: bridge
+
+volumes:
+  mysql_data:

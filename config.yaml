@@ -1,0 +1,16 @@
+report_settings:
+  formats: ["xlsx", "pdf"]
+  top_n_stores: 30           
+  language: "eng"              
+
+business_rules:
+  excluded_families: ["NAF NAF"]
+  default_country: "France"
+  vat_rate: 20                
+  margin_fallback: 0.33       
+
+email_notifications:
+  enabled: false
+  recipients:
+    - "admin@client-company.com"
+    - "finance@client-company.com"
