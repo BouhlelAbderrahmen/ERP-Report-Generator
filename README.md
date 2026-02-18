@@ -6,6 +6,7 @@ This project is a high-performance automated system designed to process over 16 
 
 * **Automation**: Streamline the extraction and transformation of raw ERP data into actionable reports.
 * **Scalability**: Handle large datasets (7GB+) efficiently using Docker and optimized MySQL configurations.
+* **Communication**: Automatically deliver financial summaries to stakeholders via Gmail or Outlook.
 * **Flexibility**: Allow non-technical users to modify business rules via simple configuration files.
 
 ## 2. Project Documentation

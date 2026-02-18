@@ -3,14 +3,23 @@ report_settings:
   top_n_stores: 30           
   language: "eng"              
 
+email_notifications:
+  enabled: true
+
 business_rules:
   excluded_families: ["NAF NAF"]
   default_country: "France"
   vat_rate: 20                
   margin_fallback: 0.33       
 
-email_notifications:
-  enabled: false
-  recipients:
-    - "admin@client-company.com"
-    - "finance@client-company.com"
+mail_distribution:
+  - recipients: 
+      - "bouhlelabderrahmenn@gmail.com"
+      - "abdoubhl69@gmail.com"
+    #client_filter: "C001"
+    #template_type: "SALES"
+    file_name: "Monthly_Sales_C001"
+  #- recipient: "accountant@company.com"
+  #  client_filter: "C002"
+  #  template_type: "SPENDING"
+  #  file_name: "Expense_Report_C002.pdf"
